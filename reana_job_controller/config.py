@@ -69,6 +69,11 @@ This directory is shared between job & VOMSPROXY container."""
 VOMSPROXY_CERT_CACHE_FILENAME = "x509up_proxy"
 """Name of the voms-proxy certificate cache file."""
 
+RUCIO_CACHE_LOCATION = "/rucio_cache/"
+"""Directory of Rucio cache.
+
+This directory is shared between job & Rucio container."""
+
 IMAGE_PULL_SECRETS = os.getenv("IMAGE_PULL_SECRETS", "").split(",")
 """Docker image pull secrets which allow the usage of private images."""
 
