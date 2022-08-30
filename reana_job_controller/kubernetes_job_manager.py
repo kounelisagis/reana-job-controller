@@ -446,19 +446,19 @@ class KubernetesJobManager(JobManager):
 
         rucio_config_file_path = os.path.join(
             current_app.config["RUCIO_CACHE_LOCATION"],
-            'rucio.cfg',
+            current_app.config["RUCIO_CFG_CACHE_FILENAME"],
         )
 
         cern_bundle_path = os.path.join(
             current_app.config["RUCIO_CACHE_LOCATION"],
-            'CERN-bundle.pem',
+            current_app.config["RUCIO_CERN_BUNDLE_CACHE_FILENAME"],
         )
 
         rucio_account = os.environ.get("RUCIO_USERNAME")
         voms_proxy_vo = os.environ.get("VONAME")
 
         rucio_config_container = {
-            "image": "reanahub/reana-auth-rucio:latest",
+            "image": current_app.config["RUCIO_CONTAINER_IMAGE"],
             "command": ["/bin/bash"],
             "args": [
                 "-c",
@@ -471,9 +471,9 @@ class KubernetesJobManager(JobManager):
                     voms_proxy_vo=voms_proxy_vo,
                     cern_bundle_path=cern_bundle_path,
                     rucio_config_file_path=rucio_config_file_path,
-                )
+                ),
             ],
-            "name": "reana-auth-rucio",
+            "name": current_app.config["RUCIO_CONTAINER_NAME"],
             "imagePullPolicy": "IfNotPresent",
             "volumeMounts": [secrets_volume_mount] + volume_mounts,
             "env": secret_env_vars,
