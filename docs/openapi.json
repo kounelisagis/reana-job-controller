@@ -84,6 +84,9 @@
           "default": "",
           "type": "string"
         },
+        "rucio": {
+          "type": "boolean"
+        },
         "shared_file_system": {
           "default": true,
           "type": "boolean"
@@ -98,9 +101,6 @@
           "type": "boolean"
         },
         "voms_proxy": {
-          "type": "boolean"
-        },
-        "rucio": {
           "type": "boolean"
         },
         "workflow_uuid": {
